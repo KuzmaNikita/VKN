@@ -1,8 +1,19 @@
-a=float(input('Длина грани куба:'))/2
-x1=abs(float(input('Координата точки х:')))
-y1=abs(float(input('Координата точки y:')))
-z1=abs(float(input('Координата точки z:')))
-if x1<=a and y1<=a and z1<=a:
-    print('Принадлежит')
-else:
-    print('Не принадлежит')    
+import math 
+#2, #3
+
+a = int(input('a:'))
+b = int(input('b:'))
+h = int(input('h:'))
+lst = [] #список
+p = 0
+x = a
+
+while x <= b:
+    y = round(math.sin(x + math.pi) + math.cos(x + math.log(abs(x))), 3)
+    lst.append([x, y])
+    p += y 
+    x += h
+
+p = round(p, 3)
+print(p)
+print(lst)
