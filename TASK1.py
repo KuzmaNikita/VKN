@@ -1,10 +1,21 @@
-import math
-x=float(input('х:'))
-if x <= -0.5:
-    y=math.fabs((2*(x**-x))-(x**2))
-elif x > -0.5 and x < 5:
-    y=math.cos(x) + math.sin(2*x)
-else:
-    y=(x**0.5)- 9 + math.log(x)
-print(y)
-        
+import math 
+
+# 1, #3
+a = float(input('a:'))
+b = float(input('b:'))
+h = float(input('h:'))
+lst = [] #список
+p = 0
+x = a
+for i in range(1000):
+    y = round(math.sin(x + math.pi) + math.cos(x + math.log(abs(x))), 3)
+
+    #метод для добавления элемента в конец списка
+    lst.append([x, y])
+    p += y #добавляем к текущей сумме значение у
+    x += h
+    if x > b:
+        break
+p = round(p, 3)
+print(p)
+print(lst)
