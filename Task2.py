@@ -1,8 +1,20 @@
-path = input("Введите путь к файлу: ")
-#path = "C:\Users\Nikita\Desktop\LB7\Task2.py"
-path = path.split('\\')
+from random import uniform
 
-for i in path[:-1]:
-    print(i)
+# 2. Множина С містить випадкові дійсні числа (в діапазоні від 0,7 до 150). 
+# Множину D утворено з дійсних чисел, заданих користувачем. Програма 
+# повинна визначити суму і різницю множин. 
 
-print(f"Назва файлу - {path[-1].split('.')[0]}, розширення файлу - .{path[-1].split('.')[1]}") 
+d = set()
+c = set()
+
+while True:
+    number = input("Введіть дійсне число, ввод буде закінчено коли введено порожню строку - ")
+    
+    if number == "":
+        break
+    else:
+        d.add(float(number))
+        c.add(round(uniform(0.7, 150), 4))  
+    
+print(d|c)
+print(d - c)
