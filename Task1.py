@@ -1,13 +1,26 @@
-s = input("Введіть рядок символів: ")
-res_count = {} #словарь
+from array import * 
+from math import pow
+import random
 
-s = list(s.lower())
+n = int(input("Введіть число n: ")) 
 
-for i in s:
-    if i not in res_count.keys():
-        res_count[i] = s.count(i)
+arr = array('f', []) 
 
-print(res_count) 
+for i in range(n): 
+    arr.append(float(pow(0.5, i)))
+     
+for i in range(n):
+    x = arr.append(random.randint(-1, 3)) 
 
-#for k, v in res_count.items():
-     #print(f"{k} - {v}")
+arr = array("f", sorted(arr.tolist(), reverse=True))
+print(arr)
+
+
+arr.remove(arr[-1])
+arr.remove(arr[-1])
+
+
+arr.remove(arr[0])
+arr.remove(arr[0])
+
+print(arr)
