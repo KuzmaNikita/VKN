@@ -1,20 +1,10 @@
-from random import uniform
+import os
 
-# 2. Множина С містить випадкові дійсні числа (в діапазоні від 0,7 до 150). 
-# Множину D утворено з дійсних чисел, заданих користувачем. Програма 
-# повинна визначити суму і різницю множин. 
+#disc = os.getcwd()[:3]
 
-d = set()
-c = set()
+# Проверит только текущую папку
+disc = os.getcwd()
 
-while True:
-    number = input("Введіть дійсне число, ввод буде закінчено коли введено порожню строку - ")
-    
-    if number == "":
-        break
-    else:
-        d.add(float(number))
-        c.add(round(uniform(0.7, 150), 4))  
-    
-print(d|c)
-print(d - c)
+for i in os.walk(disc):
+    if "input.txt" in i[-1]:
+        print(f"Файл input.txt найден по пути - {i[0]}")
