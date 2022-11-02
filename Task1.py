@@ -1,22 +1,30 @@
-from math import sqrt
+import csv
 
-#1. Три кортежі містять координати X, Y, Z точок у просторі. Програма 
-# повинна: 1) записати у список відстані від цих точок до центра координат; 2) 
-# вивести індекс точки, найближчої до початку координат; 3) вивести координати 
-# точки, найдільшої від центру координат. 
+# 1. Написати програму, яка зчитає з файла CSV кількість опадів за кожен 
+# день місяця, обчислить сумарну кількість опадів, виведе на екран числа, по 
+# яких кількість опадів була вищою за середньомісячну. 
 
-tuples = [(-5, 8, 4), (-1, 2, -3), (3.4, 52, 9)]
-max_distant_dot = (0, ())
-list_of_distants = []
+f = open("data.csv", "r")
 
-for i in tuples:
-    x, y, z = i
-    distant = round(sqrt(x ** 2 + y ** 2 + z ** 2), 4)
-    list_of_distants.append(distant)
+data = list(csv.reader(f))
+f.close()
 
-    if distant > max_distant_dot[0]:
-        max_distant_dot = (distant, i)
+sum = 0
+ser = 0
+m_ser = []
 
-print(f"Відстані від точок до центру координат - {list_of_distants}")
-print(f"Індекс найближчої до центру точки - {list_of_distants.index(min(list_of_distants))}")
-print(f"Координати найдальшої від центру точки - {max_distant_dot[1]}")
+for i in range(len(data[0])):
+    sum += float(data[1][i])
+
+ser = round(sum / len(data[1]), 3)
+
+for i in range(len(data[0])):
+    if float(data[1][i]) < ser:
+        m_ser.append(data[0][i])
+    
+print(f"Сума опадів протягом місяця - {sum}, середня кількість опадів - {ser}")
+print(f"Числа в яких було більше опадів ніж в середньому за місяць - {', '.join(m_ser)}")
+
+
+
+
