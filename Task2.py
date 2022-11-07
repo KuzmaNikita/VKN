@@ -1,32 +1,13 @@
-import json
+from my_module2 import *
 
-# 2. Текстовий файл містить дані про назви і довжини сторін трикутника у 
-# форматі JSON. Написати програму, яка: 1) перевірить існування трикутника; 2) 
-# виведе вид трикутника (прямокутний, рівнобедрений, рівносторонній). 
-
-f = open("data.json", "r")
-
-data = json.load(f)
-keys = list(data.keys())
-f.close()
-
-if data[keys[0]] < data[keys[1]] + data[keys[2]]:
-    print("Трикутник існує")
-    if data[keys[0]] == data[keys[1]] and data[keys[0]] == data[keys[2]]:
-        print("Рівносторонній") 
-    else:
-
-        if data[keys[0]] ** 2 == (data[keys[1]] ** 2 + data[keys[2]] ** 2) or data[keys[1]] ** 2 == (data[keys[0]] ** 2 + data[keys[2]] ** 2) or data[keys[2]] ** 2 == (data[keys[1]] ** 2 + data[keys[0]] ** 2):
-            
-            if data[keys[0]] == data[keys[1]] or data[keys[0]] == data[keys[2]] or data[keys[2]] == data[keys[1]]:
-                print("Прямокутний рівнобедренний")
-            else:
-                print("Прямокутний")
+# 2. Написати програму, яка буде шифрувати і розшифровувати 
+# повідомлення, міняючи місцями символи з парними і непарними індексами. 
+# Для цього створити відповідну функцію. 
 
 
-        else:
-            if data[keys[0]] == data[keys[1]] or data[keys[0]] == data[keys[2]] or data[keys[2]] == data[keys[1]]:
-                print("Рівнобедренний")
+s = "Парні та непарні індекси!"
+crypted_s = crypt(s)
+decrypted_s = decrypt(crypted_s)
 
-else:
-    print("Трикутник не існує")
+print(crypted_s)
+print(decrypted_s)
