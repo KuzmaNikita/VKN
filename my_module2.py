@@ -1,39 +1,31 @@
-# 2. Написати програму, яка буде шифрувати і розшифровувати 
-# повідомлення, міняючи місцями символи з парними і непарними індексами. 
-# Для цього створити відповідну функцію. 
+# 2. Розробити модуль, в якому описати клас COMPLEX (комплексне число) 
+# з властивостями: Real (дійсна частина), Imaginary (уявна частина). Написати для 
+# цього класу методи: конструктор класу, декструктор класу, SetReal (встановлює 
+# значення дійсної частини числа), SetImaginary (встановлює значення уявної 
+# частини числа), ShowComplex (виводить дійсну і уявну частину на екран). В 
+# основній програмі створит 2 екземпляри класу COMPLEX, виконати над цими 
+# об´єктами такі дії: додавання і віднімання. 
 
-def crypt(s):
-    s = list(s)
-
-    # Превратили строку в список если четное количество символов то остановимся на предпоследнем иначе остановимся на предпредпоследнем
-    if len(s) % 2 == 0:
-        end = len(s)
-    else:
-        end = len(s) - 1
-
-    # Пройдемся по списку и будем менять соседние символы местами
-    for i in range(0, end, 2):
-        new = s[i + 1]
-        s[i + 1] = s[i]
-        s[i] = new
-        
-    # Печатаем список превращая в строку
-    return "".join(s)
-
-def decrypt(s):
-    s = list(s)
+class Complex():
+    
+    def __init__(self, Real, Imaginary):
+        self.Real = int(Real)
+        self.Imaginary = int(Imaginary)
 
     
-    if len(s) % 2 == 0:
-        end = len(s)
-    else:
-        end = len(s) - 1
+    def __del__(self):
+        print("Ми видалили число - " + str(self.Real) + " + " + str(self.Imaginary) + "i")
 
     
-    for i in range(0, end, 2):
-        new = s[i + 1]
-        s[i + 1] = s[i]
-        s[i] = new
-        
+    def SetReal(self, new_real):
+        self.Real = float(new_real)
+
     
-    return "".join(s)
+    def SetImaginary(self, new_imaginary):
+        self.Imaginary = str(new_imaginary)
+
+    
+    def ShowComplex(self):
+        print(f"{self.Real} + {self.Imaginary}i")
+
+    
