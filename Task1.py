@@ -1,42 +1,46 @@
-from random import shuffle
+import requests, json
+from bs4 import BeautifulSoup
 
-# 1. Створити клас BOOKSHELF (книжкова полиця) з такими 
-# властивостями: назва, список назв книжок; методами: конструктор класу, 
-# додання книги на полицю, видалення книги з полиці, перемішування книг на 
-# полиці. Написати програму, яка імітуватиме книжкову поличку. 
+# 1. Текстовий файл містить 10-12 URL-адрес веб-сторінок, записаних у 
+# стовпчик. Користувач задає ключові слова (2-3). Програма повинна підрахувати 
+# частоту кожного з цих слів на кожному з сайтів і результат записати в файл у 
+# форматі JSON. 
 
 
-class BOOKSHELF():
 
+def check_words(url):
     
-    def __init__(self, name, books_list):
-        self.name = str(name)
-        self.book_list = books_list
+        
+        
+        data = requests.get(url)
+        if data.status_code == 200:
+            print(f"Working on url {url} with status code {data.status_code}")
+        else:
+            print(f"Site isn't finded with status code - {data.status_code}")
+        
 
+        bs = BeautifulSoup(data.text, "html.parser").getText()
+        bs = str(bs).lower()
+        
+        js[url] = {}
+        
+
+        
+        for j in words:
+            js[url][j] = bs.count(j.lower())
     
-    
-    def add_book(self, book_name):
-        self.book_list.append(book_name)
-    
-    
-    def delete_book(self, book_name):
-        self.book_list.remove(book_name)
 
-    
-    def shuffle_books(self):
-        shuffle(self.book_list)
+js = {}
+words = []
 
+for i in range(3):
+    words.append(input("Введіть ключові слова: "))
 
-shelf = BOOKSHELF("Домашня", ["Воно", "1984", "Острів скарбів", "Білий Клик", "Ми", "Війна та мир"])
+with open("file.txt", "r") as f:
+    urls = f.read().split("\n")
 
+for i in urls:
+    check_words(i)
 
-print(shelf.name)
-print(shelf.book_list)
-
-
-shelf.add_book("Гаррі Поттер")
-shelf.add_book("Місто")
-shelf.delete_book("Ми")
-print(shelf.book_list)
-shelf.shuffle_books()
-print(shelf.book_list)
+with open("js.json", "w") as f:
+    f.write(json.dumps(js))
